@@ -1,4 +1,4 @@
-#include "player.hpp"
+#include "headers/player.hpp"
 
 Player::Player(int x, int y, int size){ 
     X = x;

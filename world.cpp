@@ -2,7 +2,7 @@
 
 int map1[12][12];
 int map2[12][12];
-
+int map3[12][12];
 
 int SetMapFromFile(std::string FileName, int (*map)[12][12]){
     std::ifstream file(FileName);
@@ -20,4 +20,15 @@ int SetMapFromFile(std::string FileName, int (*map)[12][12]){
 
     file.close();
     return 0;
+}
+
+void ReadFile(std::string FileName){
+    std::string Text;
+    std::ifstream file(FileName);
+
+    while (std::getline(file, Text)) {
+        std::cout << Text;
+    }
+    std::cout << std::endl;
+    
 }

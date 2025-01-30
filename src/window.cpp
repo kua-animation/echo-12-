@@ -1,4 +1,4 @@
-#include "window.hpp"
+#include "headers/window.hpp"
 
 Window::Window(int w, int h, const char* name, int map[12][12], int blocksize) {
 	width = w;

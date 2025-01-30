@@ -1,13 +1,11 @@
-#include "src/window.hpp"
-#include "src/player.hpp"
-#include "world.hpp"
+#include "src/echo[12].hpp"
 
 #define BLOCKSIZE 58
 
 const char* windowName = "--<ani + asm>--";
 
 bool running = true;
-bool mapInt = true;
+int mapInt = 1;
 
 SDL_Event event;
 Player player(2*BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
@@ -16,6 +14,7 @@ Window window(12*BLOCKSIZE+2, 12*BLOCKSIZE+2, windowName, map1, BLOCKSIZE);
 void initWorld(){
 	SetMapFromFile("maps/map1.txt", &map1);
 	SetMapFromFile("maps/map2.txt", &map2);
+	SetMapFromFile("maps/map3.txt", &map3);
 	window.SetMap(map1);
 }
 
@@ -78,20 +77,12 @@ void GameLoop(){
 		} 
 
 		else if (player.Colishen(window.Map) == 2) {
-				
-			if (mapInt) {
-				window.SetMap(map2);
-				mapInt = false;
-				player.Mov();
-			} 
-				
-			else {
-				window.SetMap(map1);
-				mapInt = true;
-				player.Mov();
-			}
+			NewLevel(mapInt, player, window);
 		} else if (player.Colishen(window.Map) == 3) {
 			running = false;
+		}
+		else if (player.Colishen(window.Map) == 6) {
+			Dialogue(mapInt);
 		}
 	}
 
