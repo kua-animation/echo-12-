@@ -17,7 +17,7 @@ void Player::Input(SDL_Event event){
     NewX = X/Size;
     NewY = Y/Size;
     int x, y;
-    if (event.type == SDL_MOUSEBUTTONUP) {
+    if (event.type == SDL_MOUSEMOTION) {
 
         SDL_GetMouseState(&x, &y);
         if (y/Size == NewY + 1 or y/Size == NewY - 1) {
