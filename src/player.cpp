@@ -16,29 +16,15 @@ void Player::Draw(SDL_Renderer* render){
 void Player::Input(SDL_Event event){
     NewX = X/Size;
     NewY = Y/Size;
-    switch (event.type) {
-    case SDL_KEYDOWN:
-        switch (event.key.keysym.sym) {
-        case SDLK_w:
-            NewY -= 1;
-            break;
+    int x, y;
+    if (event.type == SDL_MOUSEBUTTONUP) {
 
-        case SDLK_s:
-            NewY += 1;
-            break;
-
-        case SDLK_a:
-            NewX -= 1;
-            break;
-
-        case SDLK_d:
-            NewX += 1;
-            break;
-            
-        default:
-            break;
+        SDL_GetMouseState(&x, &y);
+        if (y/Size == NewY + 1 or y/Size == NewY - 1) {
+            NewY = y / Size;
+        } if (x/Size == NewX + 1 or x/Size == NewX - 1) {
+            NewX = x / Size;
         }
-        break;
     }
 }
 int Player::Colishen(int map[12][12]){

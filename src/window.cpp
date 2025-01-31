@@ -40,12 +40,14 @@ void Window::WorldDraw() {
             rect.y = j* BlockSize + 2;
             if (Map[j][i] == 1) {
                 SDL_SetRenderDrawColor(Render, 68, 17, 81, 255);
-            } else if (Map[j][i] == 2) {
+            } else if (Map[j][i] == 6) {
                 SDL_SetRenderDrawColor(Render, 255, 149, 140, 255);
             } else if (Map[j][i] == -1) {
                 SDL_SetRenderDrawColor(Render, 136, 54, 119, 255);
             } else if (Map[j][i] == 3) {
                 SDL_SetRenderDrawColor(Render, 238, 133, 181, 255);
+            } else if (Map[j][i] == 2) {
+                SDL_SetRenderDrawColor(Render, 84, 222, 253, 255);
             } else {
                 SDL_SetRenderDrawColor(Render, 202, 97, 195, 255);
             }

@@ -9,7 +9,7 @@ int mapInt = 1;
 
 SDL_Event event;
 Player player(2*BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
-Window window(12*BLOCKSIZE+2, 12*BLOCKSIZE+2, windowName, map1, BLOCKSIZE);
+Window window(13*BLOCKSIZE+2, 13*BLOCKSIZE+2, windowName, map1, BLOCKSIZE);
 
 void initWorld(){
 	SetMapFromFile("maps/map1.txt", &map1);
