@@ -8,8 +8,9 @@ bool running = true;
 int mapInt = 1;
 
 SDL_Event event;
-Player player(2*BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
+Player player(6*BLOCKSIZE, 6*BLOCKSIZE, BLOCKSIZE);
 Window window(13*BLOCKSIZE+2, 13*BLOCKSIZE+2, windowName, map1, BLOCKSIZE);
+
 
 void initWorld(){
 	SetMapFromFile("maps/map1.txt", &map1);
@@ -29,8 +30,15 @@ int main() {
 		return 1;
 	}
 
+	if (IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG != IMG_INIT_PNG) {
+        std::cerr << "SDL_image could not initialize! IMG_Error: " << IMG_GetError() << std::endl;
+        SDL_Quit();
+        return -1;
+    }
+
 	window.Create();
 	window.CreateRender();
+	player.Init(window.Render, window.Win);
 
 	if(!window.Win){ 
 		SDL_Quit();
@@ -50,8 +58,8 @@ int main() {
 		SDL_RenderClear(window.Render);
 		
 		window.WorldDraw();
+		
 		player.Draw(window.Render);
-
 		SDL_RenderPresent(window.Render);
 
 		SDL_Delay(10);

@@ -5,5 +5,6 @@
 #include "headers/player.hpp"
 #include "headers/block.hpp"
 #include "../world.hpp"
+#include "headers/sprite.hpp"
 
 #endif

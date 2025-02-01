@@ -1,16 +1,20 @@
 #include "headers/player.hpp"
 
-Player::Player(int x, int y, int size){ 
-    X = x;
-    Y = y;
-    Size = size;
+Player::Player(int x, int y, int size)
+    :
+    X(x),
+    Y(y),
+    Size(size),
+    Image("test.png")
+{}
 
+void Player::Init(SDL_Renderer* render, SDL_Window* window){
+    Image.CreateSprite(render, window);
 }
 
 void Player::Draw(SDL_Renderer* render){
     SDL_Rect player{X, Y, Size-2, Size-2};
-    SDL_SetRenderDrawColor(render, 246, 247, 248, 255);
-    SDL_RenderFillRect(render, &player);
+    Image.Render(render, &player);
 }
 
 void Player::Input(SDL_Event event){

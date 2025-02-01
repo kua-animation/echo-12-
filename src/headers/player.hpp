@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <SDL2/SDL.h>
+#include "sprite.hpp"
 #include <iostream>
 
 class Player {
@@ -11,7 +12,9 @@ class Player {
         int Y;
 		int NewX;
 		int NewY;
+		Sprite Image;
 		Player(int x, int y, int size);
+		void Init(SDL_Renderer* render, SDL_Window* window);
 		void Draw(SDL_Renderer* render);
         void Input(SDL_Event event);
 		int Colishen(int map[12][12]);

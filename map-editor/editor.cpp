@@ -21,11 +21,8 @@ void Editor::Move(SDL_Event event, int (&map)[12][12]){
     if (event.type == SDL_MOUSEMOTION) {
 
         SDL_GetMouseState(&x, &y);
-        if (y/BlockSize == NewY + 1 or y/BlockSize == NewY - 1) {
             NewY = y / BlockSize;
-        } if (x/BlockSize == NewX + 1 or x/BlockSize == NewX - 1) {
             NewX = x / BlockSize;
-        }
     }
     Edit(event, map);
     X = NewX*BlockSize;
@@ -52,8 +49,20 @@ void Editor::Edit(SDL_Event event, int map[12][12]){
     case SDL_KEYDOWN:
 
         switch(event.key.keysym.sym){
-            case SDLK_0:
+            case SDLK_KP_0:
+                Map[NewY][NewX] = 0;
+                break;
+            case SDLK_KP_1:
                 Map[NewY][NewX] = 1;
+                break;
+            case SDLK_KP_2:
+                Map[NewY][NewX] = 2;
+                break;
+            case SDLK_KP_3:
+                Map[NewY][NewX] = 3;
+                break;
+            case SDLK_KP_MINUS:
+                Map[NewY][NewX] = -1;
                 break;
             case SDLK_p:
                 Pres();
