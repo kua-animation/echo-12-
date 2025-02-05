@@ -1,4 +1,5 @@
 #include "headers/window.hpp"
+#include <bits/stdc++.h> 
 
 Window::Window(int w, int h, const char* name, int map[12][12], int blocksize) {
 	width = w;
@@ -32,12 +33,23 @@ void Window::CreateRender() {
 	-1, SDL_RENDERER_SOFTWARE);
 }
 
-void Window::WorldDraw() {
+void Window::WorldDraw(int Ypos, bool RenderInt) {
+    if (RenderInt) {
+        Draw(0, 12);
+    } else {
+        Draw(Ypos, 1);
+    }
+
+}
+
+void Window::Draw(int Ypos, int RenderInt) {
     SDL_Rect rect{0, 0, BlockSize-2, BlockSize-2};
     for (int i = 0; i < 12; i++) {
-        for(int j = 0; j < 12; j++) {
+        for (int j = Ypos; j < Ypos+RenderInt; j++) {
+
             rect.x = i* BlockSize + 2;
             rect.y = j* BlockSize + 2;
+
             if (Map[j][i] == 1) {
                 SDL_SetRenderDrawColor(Render, 68, 17, 81, 255);
             } else if (Map[j][i] == 6) {
@@ -52,8 +64,8 @@ void Window::WorldDraw() {
                 SDL_SetRenderDrawColor(Render, 202, 97, 195, 255);
             }
             SDL_RenderFillRect(Render, &rect);
+        
         }
-
     }
 
 }

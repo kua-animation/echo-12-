@@ -30,6 +30,11 @@ void Player::Input(SDL_Event event){
             NewX = x / Size;
         }
     }
+    if (event.type == SDL_MOUSEBUTTONDOWN) {
+        RenderInt = true;
+    } else {
+        RenderInt = false;
+    }
 }
 int Player::Colishen(int map[12][12]){
     return map[NewY][NewX];

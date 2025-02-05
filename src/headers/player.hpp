@@ -12,6 +12,7 @@ class Player {
         int Y;
 		int NewX;
 		int NewY;
+		bool RenderInt;
 		Sprite Image;
 		Player(int x, int y, int size);
 		void Init(SDL_Renderer* render, SDL_Window* window);

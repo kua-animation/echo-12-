@@ -57,7 +57,7 @@ int main() {
 		SDL_SetRenderDrawColor(window.Render, 60, 10, 30, 255);
 		SDL_RenderClear(window.Render);
 		
-		window.WorldDraw();
+		window.WorldDraw(player.Y/player.Size, player.RenderInt);
 		
 		player.Draw(window.Render);
 		SDL_RenderPresent(window.Render);
