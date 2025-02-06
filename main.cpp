@@ -1,4 +1,5 @@
 #include "src/echo[12].hpp"
+#include <SDL2/SDL_mixer.h>
 
 #define BLOCKSIZE 58
 
@@ -8,7 +9,7 @@ bool running = true;
 int mapInt = 1;
 
 SDL_Event event;
-Player player(6*BLOCKSIZE, 6*BLOCKSIZE, BLOCKSIZE);
+Player player(6*BLOCKSIZE, 6*BLOCKSIZE, BLOCKSIZE, "images/player.png");
 Window window(13*BLOCKSIZE+2, 13*BLOCKSIZE+2, windowName, map1, BLOCKSIZE);
 
 
@@ -16,6 +17,7 @@ void initWorld(){
 	SetMapFromFile("maps/map1.txt", &map1);
 	SetMapFromFile("maps/map2.txt", &map2);
 	SetMapFromFile("maps/map3.txt", &map3);
+	SetMapFromFile("maps/map.txt", &mapMain);
 	window.SetMap(map1);
 }
 
@@ -35,6 +37,12 @@ int main() {
         SDL_Quit();
         return -1;
     }
+
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+    {
+        std::cout << "Error: " << Mix_GetError() << std::endl;
+    }
+
 
 	window.Create();
 	window.CreateRender();
@@ -57,7 +65,7 @@ int main() {
 		SDL_SetRenderDrawColor(window.Render, 60, 10, 30, 255);
 		SDL_RenderClear(window.Render);
 		
-		window.WorldDraw(player.Y/player.Size, player.RenderInt);
+		window.WorldDraw(player.Y/player.Size, player.X/player.Size, player.RenderInt );
 		
 		player.Draw(window.Render);
 		SDL_RenderPresent(window.Render);
@@ -68,6 +76,7 @@ int main() {
 	SDL_DestroyWindow(window.Win);
 	SDL_DestroyRenderer(window.Render);
 	SDL_Quit();
+	Mix_Quit();
 	return 0;
 }
 
@@ -90,7 +99,7 @@ void GameLoop(){
 			running = false;
 		}
 		else if (player.Colishen(window.Map) == 6) {
-			Dialogue(mapInt);
+			Dialogue(mapInt, event);
 		}
 	}
 

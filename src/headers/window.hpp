@@ -7,7 +7,7 @@
 class Window {
 	private:
         int BlockSize;
-		void Draw(int Ypos, int RenderInt);
+		void Draw(int Ypos, int Xpos);
 	public:
 		int Map[12][12];
 		int width;
@@ -18,7 +18,7 @@ class Window {
 		Window(int w, int h, const char* name, int map[12][12], int blocksize);
 		void Create();
 		void CreateRender();
-		void WorldDraw(int Ypos, bool RenderInt);
+		void WorldDraw(int Ypos, int Xpos, bool RenderInt);
 		void SetMap(int map[12][12]);
 };
 

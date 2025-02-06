@@ -2,6 +2,29 @@
 #include "../world.hpp"
 
 
+void PlayMusic(const char* name, SDL_Event event){
+
+
+    Mix_Music* song =  Mix_LoadMUS(name);
+	if (song == NULL) {
+		std::cout << "erorr" << Mix_GetError() << std::endl; 
+		return;
+	}
+    if (Mix_PlayMusic(song, 1) == -1) {
+		std::cout << "erorr" << Mix_GetError() << std::endl;
+		return;
+	}
+
+	while (Mix_PlayingMusic()){
+		SDL_PollEvent(&event);
+		SDL_Delay(10);
+	}
+	
+    Mix_FreeMusic(song);
+
+}
+
+
 void FalseWoll(Player &player){
     player.Mov();
 }
@@ -32,11 +55,20 @@ void NewLevel(int &mapInt, Player &player, Window &window ){
     }
 }
 
-void Dialogue(int mapInt){
-    if (2 == mapInt) {
-		ReadFile("dialog/dialog2.txt");
-	} 
+void Dialogue(int mapInt, SDL_Event event){
+	switch (mapInt) {
+		case 1:
+			PlayMusic("dialog/test.wav", event);
+			break;
+		default:
+			break;
+	}
 
+
+}
+
+void Level(Window &Window){
+	Window.SetMap(mapMain);
 }
 
 			

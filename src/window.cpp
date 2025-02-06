@@ -33,39 +33,41 @@ void Window::CreateRender() {
 	-1, SDL_RENDERER_SOFTWARE);
 }
 
-void Window::WorldDraw(int Ypos, bool RenderInt) {
+void Window::WorldDraw(int Ypos, int Xpos, bool RenderInt) {
     if (RenderInt) {
-        Draw(0, 12);
+        for (int i = 0; i < 12; i++){
+            Draw(Ypos, i);
+        }
     } else {
-        Draw(Ypos, 1);
+        for (int i = 0; i < 12; i++){
+            Draw(i, Xpos);
+        }
     }
+
 
 }
 
-void Window::Draw(int Ypos, int RenderInt) {
+void Window::Draw(int Ypos, int Xpos) {
     SDL_Rect rect{0, 0, BlockSize-2, BlockSize-2};
-    for (int i = 0; i < 12; i++) {
-        for (int j = Ypos; j < Ypos+RenderInt; j++) {
 
-            rect.x = i* BlockSize + 2;
-            rect.y = j* BlockSize + 2;
+            rect.x = Xpos* BlockSize + 2;
+            rect.y = Ypos* BlockSize + 2;
 
-            if (Map[j][i] == 1) {
+            if (Map[Ypos][Xpos] == 1) {
                 SDL_SetRenderDrawColor(Render, 68, 17, 81, 255);
-            } else if (Map[j][i] == 6) {
+            } else if (Map[Ypos][Xpos] == 6) {
                 SDL_SetRenderDrawColor(Render, 255, 149, 140, 255);
-            } else if (Map[j][i] == -1) {
+            } else if (Map[Ypos][Xpos] == -1) {
                 SDL_SetRenderDrawColor(Render, 136, 54, 119, 255);
-            } else if (Map[j][i] == 3) {
+            } else if (Map[Ypos][Xpos] == 3) {
                 SDL_SetRenderDrawColor(Render, 238, 133, 181, 255);
-            } else if (Map[j][i] == 2) {
+            } else if (Map[Ypos][Xpos] == 2) {
                 SDL_SetRenderDrawColor(Render, 84, 222, 253, 255);
             } else {
                 SDL_SetRenderDrawColor(Render, 202, 97, 195, 255);
             }
             SDL_RenderFillRect(Render, &rect);
         
-        }
-    }
+        
 
 }

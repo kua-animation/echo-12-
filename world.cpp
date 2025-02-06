@@ -2,7 +2,8 @@
 
 int map1[12][12];
 int map2[12][12];
-int map3[12][12];
+int map3[12][12];   
+int mapMain[12][12];
 
 int SetMapFromFile(std::string FileName, int (*map)[12][12]){
     std::ifstream file(FileName);

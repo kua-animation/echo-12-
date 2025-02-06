@@ -14,7 +14,7 @@ class Player {
 		int NewY;
 		bool RenderInt;
 		Sprite Image;
-		Player(int x, int y, int size);
+		Player(int x, int y, int size, const char* image);
 		void Init(SDL_Renderer* render, SDL_Window* window);
 		void Draw(SDL_Renderer* render);
         void Input(SDL_Event event);
