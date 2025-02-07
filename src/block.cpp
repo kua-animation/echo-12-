@@ -67,8 +67,18 @@ void Dialogue(int mapInt, SDL_Event event){
 
 }
 
-void Level(Window &Window){
-	Window.SetMap(mapMain);
+void PlaceBlocks(SDL_Event event, Window& window, int mapInt, Player &player){
+	if (0 == mapInt) {
+		player.Place(event, window, map3);
+	} 
+		
+	else if (1 == mapInt) {
+		player.Place(event, window, map1);
+	}
+
+    else if (2 == mapInt) {
+		player.Place(event, window, map2);
+    }
 }
 
 			

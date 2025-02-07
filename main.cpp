@@ -89,7 +89,9 @@ void GameLoop(){
 		}
 		player.Input(event);
 
-		if (player.Colishen(window.Map) == 0 or player.Colishen(window.Map) == -1) {
+		PlaceBlocks(event, window, mapInt, player);
+
+		if (player.Colishen(window.Map) <= 0) {
 			player.Mov();
 		} 
 

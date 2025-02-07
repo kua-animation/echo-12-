@@ -63,7 +63,9 @@ void Window::Draw(int Ypos, int Xpos) {
                 SDL_SetRenderDrawColor(Render, 238, 133, 181, 255);
             } else if (Map[Ypos][Xpos] == 2) {
                 SDL_SetRenderDrawColor(Render, 84, 222, 253, 255);
-            } else {
+            } else if (Map[Ypos][Xpos] == -2) {
+                SDL_SetRenderDrawColor(Render, 172, 107, 181, 255);
+            }else {
                 SDL_SetRenderDrawColor(Render, 202, 97, 195, 255);
             }
             SDL_RenderFillRect(Render, &rect);

@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include "sprite.hpp"
 #include <iostream>
+#include "window.hpp"
 
 class Player {
 	public:
@@ -18,6 +19,7 @@ class Player {
 		void Init(SDL_Renderer* render, SDL_Window* window);
 		void Draw(SDL_Renderer* render);
         void Input(SDL_Event event);
+		void Place(SDL_Event event, Window& window, int (&map)[12][12]);
 		int Colishen(int map[12][12]);
 		void Mov();
 };

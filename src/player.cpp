@@ -35,8 +35,7 @@ void Player::Input(SDL_Event event){
         }
     }
     if (event.type == SDL_KEYDOWN) {
-        switch (event.key.keysym.sym)
-        {
+        switch (event.key.keysym.sym) {
         case SDLK_TAB:
             if (RenderInt) {
                 RenderInt = false;
@@ -49,6 +48,42 @@ void Player::Input(SDL_Event event){
         }
     }
 }
+
+void Player::Place(SDL_Event event, Window& window, int (&map)[12][12]){
+
+    if (event.type == SDL_KEYDOWN) {
+        switch (event.key.keysym.sym) {
+        case SDLK_q:
+            if (RenderInt) {
+                if (map[NewY][NewX-1] == 1){
+                    map[NewY][NewX-1] = -2;
+                }
+            } else {
+                if (map[NewY-1][NewX] == 1){
+                    map[NewY-1][NewX] = -2;
+                }
+            }
+            break;
+        case SDLK_e:
+                if (RenderInt) {
+                    if (map[NewY][NewX+1] == 1){
+                        map[NewY][NewX+1] = -2;
+                    }
+                } else {
+                    if (map[NewY+1][NewX] == 1){
+                        map[NewY+1][NewX] = -2;
+                    }
+                }
+            break;
+        default:
+            break;
+        }
+    }
+
+    window.SetMap(map);
+
+}
+
 int Player::Colishen(int map[12][12]){
     return map[NewY][NewX];
 }
